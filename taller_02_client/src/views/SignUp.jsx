@@ -1,5 +1,4 @@
-
-import { Button } from "@/components/ui/button"
+import {Button} from "@/components/ui/button"
 import {
     Card,
     CardContent,
@@ -7,14 +6,12 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import {Input} from "@/components/ui/input"
+import {Label} from "@/components/ui/label"
 import {LOGIN} from "@/routes/path.jsx";
 import {Link, redirect} from "react-router-dom";
 import {useState} from "react";
 import {UseUserContext} from "@/contexts/UserContext.jsx";
-import {toast} from "@/components/ui/use-toast.js";
-import {ToastAction} from "@/components/ui/toast.jsx";
 
 function useFormInput(initialValue) {
     const [value, setValue] = useState(initialValue);
@@ -45,20 +42,14 @@ export function SignUp() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        //register(userName.value, email.value,password.value);
 
-        toast(
-            {
-                variant: "success",
-                title: "Well done!",
-                description: "You have successfully registered " + `${userName.value}`,
-                action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
-            }
-        )
+        register(
+            userName.value.toString().toLowerCase(),
+            email.value.toString().toLowerCase(),
+            password.value
+        );
 
         cleanInputs();
-
-        return redirect(LOGIN);
     }
 
     return (

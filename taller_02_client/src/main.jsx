@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 
 import {UserContextProvider} from './contexts/UserContext.jsx';
@@ -14,6 +13,10 @@ import Login from "@/views/Login.jsx";
 import Logout from "@/views/Logut.jsx";
 import Private from "@/views/Private.jsx";
 import {SignUp} from "@/views/SignUp.jsx";
+
+import axios from "axios";
+
+axios.defaults.baseURL = import.meta.env.VITE_APIENDPOINT || "http://localhost:8080/api/user";
 
 const router = createBrowserRouter([
     {

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import {toast} from "@/components/ui/use-toast.js";
 import {ToastAction} from "@/components/ui/toast.jsx";
+import {redirect} from "react-router-dom";
+import {LOGIN} from "@/routes/path.jsx";
 
 const UserContext = React.createContext();
 
@@ -9,22 +11,19 @@ export const UserContextProvider = (props) => {
 
     const [user, setUser] = useState(null);
 
-    //Función para register
     const login = async (identifier, password) => {
         try {
-
-            //await axios.post("/auth/signin", { identifier, password });
-            setUser({ identifier, password })
+            const { data } = await axios.post("/login", { identifier, password });
+            setUser(data);
             toast(
                 {
                     variant: "success",
-                    title: "Welcome back",
+                    title: "Welcome back , " + data.username ,
                     description: "You have successfully logged in",
                     action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
                 }
             )
         } catch (error) {
-
             const {status} = error.response || {status: 500};
             const msgs = {
                 "404": "User not found",
@@ -45,15 +44,27 @@ export const UserContextProvider = (props) => {
 
     const logout = () => {
         setUser(null);
-        //toast.success("Haz cerrado sesión");
+        toast(
+            {
+                variant: "success",
+                title: "Well done!",
+                description: "You have successfully logout " + `${user}`,
+                action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
+            }
+        )
     }
 
     const register = async (username, email, password) => {
-
         try {
-            await axios.post("/auth/signup", { username, email, password });
-            //toast.success("Signup successful");
-
+            await axios.post("/register", { username, password, email });
+            toast(
+                {
+                    variant: "success",
+                    title: "Well done!",
+                    description: "You have successfully registered " + username,
+                    action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
+                }
+            )
         } catch (error) {
             const { status } = error.response || { status: 500 };
             const msgs = {
@@ -62,7 +73,14 @@ export const UserContextProvider = (props) => {
                 "500": "Unexpected error"
             }
 
-            //toast.error(msgs[String(status)]);
+            toast(
+                {
+                    variant: "destructive",
+                    title: "Error",
+                    description: msgs[String(status)],
+                    action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
+                }
+            )
         }
     }
 

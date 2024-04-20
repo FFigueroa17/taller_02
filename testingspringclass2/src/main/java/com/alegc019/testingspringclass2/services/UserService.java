@@ -3,9 +3,13 @@ package com.alegc019.testingspringclass2.services;
 import com.alegc019.testingspringclass2.domain.dtos.SaveUserDto;
 import com.alegc019.testingspringclass2.domain.entities.User;
 
+import java.util.List;
+
 public interface UserService {
 
     void save(SaveUserDto info);
+
+    List<User> getAll();
 
     //searchforlogin
     User searchForLoginName(String username, String password);
@@ -15,7 +19,5 @@ public interface UserService {
     User searchUser(SaveUserDto info);
 
     User searchForLogin(SaveUserDto info);
-
-
 
 }
