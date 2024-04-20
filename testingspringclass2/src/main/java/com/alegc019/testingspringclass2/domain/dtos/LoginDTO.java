@@ -7,6 +7,7 @@ import lombok.Data;
 public class LoginDTO {
 
     @NotEmpty
+
     private String identifier;
 
     @NotEmpty

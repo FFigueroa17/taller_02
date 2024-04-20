@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/library")
+@RequestMapping("/libraryrest")
 public class LibraryRESTController {
 
     @Autowired
