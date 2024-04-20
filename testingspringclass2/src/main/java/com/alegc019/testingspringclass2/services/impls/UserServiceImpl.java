@@ -24,9 +24,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(SaveUserDto info) {
+    public boolean save(SaveUserDto info) {
 
-        User user = searchUser(info);
+        /*
+        * User user = searchUser(info);
 
         if(user == null){
             user = new User();
@@ -36,6 +37,24 @@ public class UserServiceImpl implements UserService {
         user.setUsername(info.getUsername());
         user.setPassword(info.getPassword());
         user.setEmail(info.getEmail());
+        * */
+
+        if(!isUserExists(info)){
+            // si el usuario no existe, lo creamos
+            User user = new User();
+            users.add(user);
+
+            // guardamos los campos
+            user.setEmail(info.getEmail());
+            user.setUsername(info.getUsername());
+            user.setPassword(info.getPassword());
+
+            // retornamos true para indicar que se ha creado el usuario
+            return true;
+        }
+
+        // retornamos false para indicar que no se ha creado el usuario por que ya existe
+        return false;
     }
 
     @Override
@@ -76,5 +95,13 @@ public class UserServiceImpl implements UserService {
         User user = searchUser(info);
 
         return user;
+    }
+
+    @Override
+    public boolean isUserExists(SaveUserDto info) {
+        User user = searchUser(info);
+        if(user != null)
+            return true;
+        return false;
     }
 }

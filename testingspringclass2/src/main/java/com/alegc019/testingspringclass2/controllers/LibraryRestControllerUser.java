@@ -69,11 +69,25 @@ public class LibraryRestControllerUser {
            );
         }
 
-        userService.save(info);
+        /*
+        * userService.save(info);
 
         return GeneralResponse.getResponse(
                 HttpStatus.OK,
                 "User saved"
         );
+        * */
+
+        if(userService.save(info)){
+            return GeneralResponse.getResponse(
+                    HttpStatus.OK,
+                    "User saved"
+            );
+        }else{
+            return GeneralResponse.getResponse(
+                    HttpStatus.BAD_REQUEST,
+                    "User already exists"
+            );
+        }
     }
 }
