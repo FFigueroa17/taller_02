@@ -16,11 +16,7 @@ public class UserServiceImpl implements UserService {
     public final static List<User> users = new ArrayList<>();
     static{
         //Add user
-        users.add(new User(
-                //Username
-                //Password
-                //Email
-        ));
+        users.add(new User("alegc019", "Wasak123!", "ale@gmail.com"));
     }
 
     @Override
