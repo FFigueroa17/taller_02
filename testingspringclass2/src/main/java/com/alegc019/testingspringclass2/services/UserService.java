@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void save(SaveUserDto info);
+    boolean save(SaveUserDto info);
 
     List<User> getAll();
 
@@ -19,5 +19,7 @@ public interface UserService {
     User searchUser(SaveUserDto info);
 
     User searchForLogin(SaveUserDto info);
+
+    boolean isUserExists(SaveUserDto info);
 
 }
