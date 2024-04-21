@@ -12,8 +12,6 @@ import {Input} from "@/components/ui/input.jsx";
 import {Label} from "@/components/ui/label.jsx";
 import {useState} from "react";
 import {UseUserContext} from "@/contexts/UserContext.jsx";
-import {toast} from "@/components/ui/use-toast.js";
-import {ToastAction} from "@/components/ui/toast.jsx";
 
 function useFormInput(initialValue) {
     const [value, setValue] = useState(initialValue);
@@ -45,7 +43,6 @@ export default function Login() {
         login(identifier.value, password.value);
         cleanInputs();
     }
-
 
     return (
         <Card className="mx-auto max-w-sm">
@@ -82,7 +79,7 @@ export default function Login() {
                         </div>
                     </div>
                     <Button type="submit" className="w-full">
-                        Create an account
+                        Sign in
                     </Button>
                 </form>
             </CardContent>

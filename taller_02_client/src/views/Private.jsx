@@ -1,14 +1,21 @@
-import {Link} from 'react-router-dom';
-import {LOGOUT} from "@/routes/path.jsx";
+
 import {Button} from "@/components/ui/button.jsx";
+import {UseUserContext} from "@/contexts/UserContext.jsx";
+import TableComponent from "@/views/Table.jsx";
 
 function Private() {
+
+    const {logout} = UseUserContext();
+
     return (
         <div className={"flex flex-col gap-8 justify-center items-center"}>
-            Mi ruta privada
-            <Button>
-                <Link to={LOGOUT}>Cerrar sesión</Link>
+            Admin Dashboard
+            <Button
+                onClick={logout}
+            >
+                Cerrar sesión
             </Button>
+            <TableComponent/>
         </div>
     );
 }

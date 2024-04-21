@@ -50,6 +50,8 @@ export function SignUp() {
         );
 
         cleanInputs();
+
+        return redirect(LOGIN);
     }
 
     return (

@@ -18,7 +18,7 @@ export const UserContextProvider = (props) => {
             toast(
                 {
                     variant: "success",
-                    title: "Welcome back , " + data.username ,
+                    title: "Welcome back , " ,
                     description: "You have successfully logged in",
                     action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
                 }
@@ -48,7 +48,7 @@ export const UserContextProvider = (props) => {
             {
                 variant: "success",
                 title: "Well done!",
-                description: "You have successfully logout " + `${user}`,
+                description: "You have successfully logout ",
                 action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
             }
         )
@@ -66,7 +66,7 @@ export const UserContextProvider = (props) => {
                 }
             )
         } catch (error) {
-            const { status } = error.response || { status: 500 };
+            const { status , message} = error.response || { status: 500 };
             const msgs = {
                 "400": "Wrong Fields",
                 "409": "User already exists",
@@ -77,7 +77,7 @@ export const UserContextProvider = (props) => {
                 {
                     variant: "destructive",
                     title: "Error",
-                    description: msgs[String(status)],
+                    description: message || msgs[String(status)],
                     action: <ToastAction altText="Dismiss">Dismiss</ToastAction>
                 }
             )
